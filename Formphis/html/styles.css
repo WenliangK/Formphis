@@ -1,71 +1,76 @@
-/* ═══════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    Thanks Login — styles.css
-   Modo oscuro/claro automático por sistema
-═══════════════════════════════════════ */
+   Réplica exacta del login de Google (modo oscuro)
+   Con soporte automático modo claro / oscuro
+═══════════════════════════════════════════════════ */
 
-/* ── Variables modo OSCURO (default) ── */
+/* ── Variables MODO OSCURO (igual a Google dark) ── */
 :root {
-  --bg-page:            #000000;
-  --bg-card:            #000000;
-  --bg-input:           #000000;
-  --bg-input-hover:     #000000;
-  --border-input:       #000000;
-  --border-focus:       #8ab4f8;
-  --text-primary:       #e8eaed;
-  --text-secondary:     #9aa0a6;
-  --text-link:          #8ab4f8;
-  --btn-bg:             #8ab4f8;
-  --btn-text:           #202124;
-  --btn-hover:          #aecbfa;
-  --chip-bg:            #000000;
-  --chip-border:        #000000;
-  --chip-text:          #e8eaed;
-  --check-border:       #000000;
-  --check-bg:           #8ab4f8;
-  --check-mark:         #000000;
-  --card-border:        transparent;
-  --card-shadow:        none;
-  --info-bg:            #000000;
-  --error-color:        #f28b82;
-  --success-color:      #34a853;
-  --footer-text:        #9aa0a6;
-  --toast-bg:           #000000;
-  --toast-text:         #e8eaed;
+  --bg-page:         #1f1f1f;
+  --bg-card:         #131314;
+  --bg-input:        #131314;
+  --border-input:    #444746;
+  --border-focus:    #a8c7fa;
+  --text-primary:    #e3e3e3;
+  --text-secondary:  #c4c7c5;
+  --text-hint:       #c4c7c5;
+  --text-link:       #a8c7fa;
+  --btn-bg:          #a8c7fa;
+  --btn-text:        #062e6f;
+  --btn-hover:       #c3d5f5;
+  --chip-bg:         #28292a;
+  --chip-border:     #444746;
+  --chip-text:       #e3e3e3;
+  --chip-icon:       #c4c7c5;
+  --check-border:    #8e918f;
+  --check-bg:        #a8c7fa;
+  --check-mark:      #062e6f;
+  --info-bg:         #28292a;
+  --info-border:     #444746;
+  --error-color:     #f2b8b5;
+  --footer-text:     #c4c7c5;
+  --toast-bg:        #444746;
+  --toast-text:      #e3e3e3;
+  --divider:         #444746;
+  --input-label:     #c4c7c5;
+  --input-label-focus: #a8c7fa;
 }
 
-/* ── Variables modo CLARO ── */
+/* ── Variables MODO CLARO ── */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-page:            #f1f3f4;
-    --bg-card:            #ffffff;
-    --bg-input:           #ffffff;
-    --bg-input-hover:     #f8f9fa;
-    --border-input:       #dadce0;
-    --border-focus:       #1a73e8;
-    --text-primary:       #202124;
-    --text-secondary:     #5f6368;
-    --text-link:          #1a73e8;
-    --btn-bg:             #1a73e8;
-    --btn-text:           #ffffff;
-    --btn-hover:          #1557b0;
-    --chip-bg:            #f1f3f4;
-    --chip-border:        #dadce0;
-    --chip-text:          #3c4043;
-    --check-border:       #80868b;
-    --check-bg:           #1a73e8;
-    --check-mark:         #ffffff;
-    --card-border:        #dadce0;
-    --card-shadow:        0 2px 10px rgba(0,0,0,0.08);
-    --info-bg:            #f1f3f4;
-    --error-color:        #d93025;
-    --success-color:      #1e7e34;
-    --footer-text:        #5f6368;
-    --toast-bg:           #202124;
-    --toast-text:         #ffffff;
+    --bg-page:         #f0f4f9;
+    --bg-card:         #ffffff;
+    --bg-input:        #ffffff;
+    --border-input:    #747775;
+    --border-focus:    #0b57d0;
+    --text-primary:    #1f1f1f;
+    --text-secondary:  #444746;
+    --text-hint:       #444746;
+    --text-link:       #0b57d0;
+    --btn-bg:          #0b57d0;
+    --btn-text:        #ffffff;
+    --btn-hover:       #0842a0;
+    --chip-bg:         #e9eef6;
+    --chip-border:     #c7d1e0;
+    --chip-text:       #1f1f1f;
+    --chip-icon:       #444746;
+    --check-border:    #747775;
+    --check-bg:        #0b57d0;
+    --check-mark:      #ffffff;
+    --info-bg:         #f0f4f9;
+    --info-border:     #c7d1e0;
+    --error-color:     #b3261e;
+    --footer-text:     #444746;
+    --toast-bg:        #1f1f1f;
+    --toast-text:      #ffffff;
+    --divider:         #c4c7c5;
+    --input-label:     #444746;
+    --input-label-focus: #0b57d0;
   }
 }
 
-/* ── Reset ── */
+/* ── Reset global ── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -78,68 +83,89 @@ html, body {
   font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
   background: var(--bg-page);
   color: var(--text-primary);
-  transition: background 0.2s, color 0.2s;
 }
 
-/* ── Page wrapper ── */
+/* ════════════════════════════
+   LAYOUT PÁGINA
+════════════════════════════ */
 .page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 16px;
+  padding: 0 16px 24px;
+  gap: 0;
 }
 
-/* ── Card ── */
+/* ════════════════════════════
+   TARJETA PRINCIPAL
+════════════════════════════ */
 .card {
   background: var(--bg-card);
   border-radius: 28px;
-  border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
   width: 100%;
-  max-width: 860px;
+  max-width: 920px;
   overflow: hidden;
-  transition: background 0.2s;
 }
 
-/* ── Card inner: 2 columnas desktop ── */
+/* 2 columnas en desktop — izquierda fija, derecha flexible */
 .card-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 360px;
-  padding: 48px 48px 40px;
-  gap: 48px;
+  grid-template-columns: 380px 1fr;
+  min-height: 420px;
+  padding: 48px 52px 48px 48px;
+  gap: 52px;
   align-items: start;
-  animation: fadeIn 0.2s ease;
+  animation: fadeIn 0.18s ease;
 }
 
-.col-left  { display: flex; flex-direction: column; gap: 12px; }
-.col-right { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+.col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
-/* ── Logo Google SVG ── */
+.col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-top: 4px;
+}
+
+/* ════════════════════════════
+   LOGO G
+════════════════════════════ */
 .logo-g {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 8px;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 4px;
+  display: block;
 }
 
-/* ── Títulos ── */
+/* ════════════════════════════
+   TÍTULOS
+════════════════════════════ */
 .card-title {
   font-size: 32px;
   font-weight: 400;
   color: var(--text-primary);
-  line-height: 1.2;
-  letter-spacing: -0.5px;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-family: 'Google Sans', sans-serif;
 }
 
 .card-subtitle {
   font-size: 16px;
   color: var(--text-secondary);
   font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  margin-top: -4px;
 }
 
-/* ── Chip de usuario ── */
+/* ════════════════════════════
+   CHIP DE USUARIO
+════════════════════════════ */
 .user-chip {
   display: inline-flex;
   align-items: center;
@@ -147,102 +173,126 @@ html, body {
   background: var(--chip-bg);
   border: 1px solid var(--chip-border);
   border-radius: 20px;
-  padding: 5px 12px 5px 5px;
+  padding: 4px 10px 4px 4px;
   cursor: pointer;
   font-size: 14px;
   color: var(--chip-text);
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   transition: background 0.15s;
   max-width: 100%;
+  text-align: left;
 }
 
-.user-chip:hover { background: var(--bg-input-hover); }
+.user-chip:hover { background: var(--chip-border); }
 
 .chip-avatar {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: #000000;
+  background: #5f6368;
   color: #e8eaed;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   flex-shrink: 0;
+  font-family: 'Google Sans', sans-serif;
 }
 
 .chip-email {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 240px;
+  max-width: 260px;
+  font-size: 14px;
+  color: var(--chip-text);
 }
 
 .chip-arrow {
   width: 18px;
   height: 18px;
-  fill: var(--text-secondary);
+  fill: var(--chip-icon);
   flex-shrink: 0;
 }
 
-/* ── Input flotante ── */
-.input-wrap { position: relative; }
+/* ════════════════════════════
+   INPUT CON LABEL FLOTANTE
+════════════════════════════ */
+.input-wrap {
+  position: relative;
+  margin-top: 6px; /* espacio para que el label suba fuera del borde */
+}
 
 .input-wrap input {
   width: 100%;
-  background: var(--bg-input);
+  background: transparent;
   border: 1px solid var(--border-input);
   border-radius: 4px;
-  padding: 16px 14px 6px;
+  /* padding-top grande para que el texto no choque con el label flotante */
+  padding: 22px 14px 8px;
   font-size: 16px;
   color: var(--text-primary);
   font-family: 'Roboto', sans-serif;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s;
   caret-color: var(--border-focus);
+  line-height: 1.25;
+  height: 56px;
 }
 
 .input-wrap input:focus {
   border: 2px solid var(--border-focus);
-  padding: 15px 13px 5px;
+  padding: 21px 13px 7px; /* compensar 1px extra del borde */
 }
 
+/* Label flotante — estado inicial: centrado verticalmente */
 .input-wrap label {
   position: absolute;
-  left: 15px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
-  color: var(--text-secondary);
+  color: var(--input-label);
   pointer-events: none;
-  transition: all 0.15s ease;
-  background: var(--bg-input);
-  padding: 0 2px;
+  transition: top 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+  background: var(--bg-card);
+  padding: 0 3px;
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+  white-space: nowrap;
 }
 
+/* Label flotante — estado activo: sube al borde superior */
 .input-wrap input:focus + label,
 .input-wrap input:not(:placeholder-shown) + label {
-  top: 10px;
-  transform: translateY(0);
-  font-size: 11px;
-  color: var(--border-focus);
+  top: 0px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--input-label-focus);
 }
 
+/* Label sin foco pero con contenido */
 .input-wrap input:not(:focus):not(:placeholder-shown) + label {
-  color: var(--text-secondary);
+  color: var(--input-label);
 }
 
-/* ── Mensaje de error ── */
+/* ════════════════════════════
+   MENSAJES DE ERROR
+════════════════════════════ */
 .error-msg {
   font-size: 12px;
   color: var(--error-color);
-  margin-top: -12px;
+  font-family: 'Roboto', sans-serif;
   display: none;
+  margin-top: -14px;
+  line-height: 1.4;
 }
 .error-msg.visible { display: block; }
 
-/* ── Links ── */
+/* ════════════════════════════
+   LINKS / BOTONES TEXTO
+════════════════════════════ */
 .link {
   font-size: 14px;
   color: var(--text-link);
@@ -254,23 +304,30 @@ html, body {
   font-family: 'Google Sans', sans-serif;
   padding: 0;
   text-align: left;
+  line-height: 1.4;
 }
 .link:hover { text-decoration: underline; }
 
-/* ── Texto hint ── */
+/* ════════════════════════════
+   TEXTOS SECUNDARIOS
+════════════════════════════ */
 .hint-text {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: var(--text-hint);
   line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
 }
 .hint-text .link { font-size: 14px; }
 
-/* ── Checkbox personalizado ── */
+/* ════════════════════════════
+   CHECKBOX
+════════════════════════════ */
 .checkbox-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
+  user-select: none;
 }
 
 .checkbox-row input[type="checkbox"] {
@@ -283,7 +340,8 @@ html, body {
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color 0.12s, background 0.12s;
+  margin: 0;
 }
 
 .checkbox-row input[type="checkbox"]:checked {
@@ -295,7 +353,7 @@ html, body {
   content: '';
   position: absolute;
   left: 3px;
-  top: 0px;
+  top: 0;
   width: 5px;
   height: 10px;
   border: 2px solid var(--check-mark);
@@ -304,21 +362,25 @@ html, body {
   transform: rotate(45deg);
 }
 
-.checkbox-row label {
+.checkbox-row span {
   font-size: 14px;
   color: var(--text-primary);
-  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* ── Barra de acciones ── */
+/* ════════════════════════════
+   BARRA DE ACCIONES
+════════════════════════════ */
 .actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
-/* ── Botón principal ── */
+/* ════════════════════════════
+   BOTÓN PRINCIPAL
+════════════════════════════ */
 .btn-next {
   background: var(--btn-bg);
   color: var(--btn-text);
@@ -329,69 +391,95 @@ html, body {
   font-weight: 500;
   cursor: pointer;
   font-family: 'Google Sans', sans-serif;
-  transition: background 0.2s;
   letter-spacing: 0.25px;
   white-space: nowrap;
+  transition: background 0.15s, box-shadow 0.15s;
+  line-height: 1.25;
 }
-.btn-next:hover  { background: var(--btn-hover); }
+.btn-next:hover {
+  background: var(--btn-hover);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
 .btn-next:active { transform: scale(0.98); }
 
-/* ── Panel informativo ── */
+/* ════════════════════════════
+   PANEL DE INFORMACIÓN (demo)
+════════════════════════════ */
 .info-panel {
   background: var(--info-bg);
-  border-radius: 12px;
-  padding: 16px;
+  border: 1px solid var(--info-border);
+  border-radius: 8px;
+  padding: 14px 16px;
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-hint);
   line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
 }
 .info-panel strong {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-/* ── Grid 2 col para nombres ── */
+/* ════════════════════════════
+   GRID NOMBRES
+════════════════════════════ */
 .name-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-/* ── Pantallas ── */
-.screen         { display: none; }
-.screen.active  { display: contents; }
+/* ════════════════════════════
+   DIVIDER
+════════════════════════════ */
+.divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  width: 100%;
+}
 
-/* ── Toast ── */
+/* ════════════════════════════
+   PANTALLAS
+════════════════════════════ */
+.screen        { display: none; }
+.screen.active { display: contents; }
+
+/* ════════════════════════════
+   TOAST
+════════════════════════════ */
 .toast {
   position: fixed;
-  bottom: 24px;
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%) translateY(80px);
+  transform: translateX(-50%) translateY(100px);
   background: var(--toast-bg);
   color: var(--toast-text);
-  font-size: 14px;
-  padding: 12px 20px;
-  border-radius: 8px;
-  z-index: 999;
-  transition: transform 0.3s ease;
-  white-space: nowrap;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  z-index: 9999;
+  transition: transform 0.25s ease;
   pointer-events: none;
-  font-family: 'Google Sans', sans-serif;
-  max-width: 90vw;
+  font-family: 'Roboto', sans-serif;
+  max-width: 88vw;
   text-align: center;
+  line-height: 1.4;
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* ── Footer ── */
+/* ════════════════════════════
+   FOOTER
+════════════════════════════ */
 .page-footer {
   width: 100%;
-  max-width: 860px;
+  max-width: 920px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
+  padding: 14px 4px 0;
   flex-wrap: wrap;
   gap: 8px;
 }
@@ -400,7 +488,7 @@ html, body {
 .footer-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .footer-link {
@@ -415,7 +503,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--footer-text);
   background: none;
   border: none;
@@ -424,61 +512,66 @@ html, body {
   padding: 0;
 }
 
-/* ── Animación de entrada ── */
+/* ════════════════════════════
+   ANIMACIÓN
+════════════════════════════ */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ══════════════════════════════════════
+/* ════════════════════════════════════════
    RESPONSIVE — MÓVIL (≤ 640px)
-══════════════════════════════════════ */
+   Igual que el Google mobile de tus fotos
+════════════════════════════════════════ */
 @media (max-width: 640px) {
 
   .page {
     justify-content: flex-start;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 32px;
+    background: #000000;
   }
 
-  /* Sin tarjeta visible en móvil, igual que Google */
+  /* Sin tarjeta en móvil, fondo negro puro como Google */
   .card {
     border-radius: 0;
-    border: none;
-    box-shadow: none;
     background: transparent;
   }
 
-  /* Una sola columna */
   .card-inner {
     grid-template-columns: 1fr;
-    padding: 16px 24px 32px;
-    gap: 20px;
+    padding: 16px 28px 36px;
+    gap: 24px;
     min-height: unset;
   }
 
-  .col-left { gap: 8px; }
+  .col-left { gap: 10px; }
+  .col-right { gap: 20px; }
 
-  .card-title    { font-size: 28px; }
+  .card-title { font-size: 30px; }
   .card-subtitle { font-size: 15px; }
+  .logo-g { width: 38px; height: 38px; }
 
-  .logo-g { width: 36px; height: 36px; }
+  .input-wrap input { font-size: 16px; }
+  /* En móvil la card es transparente — el label necesita el fondo real de la página */
+  .input-wrap label { background: #000000; }
 
-  .btn-next { padding: 12px 28px; font-size: 15px; }
-
-  .chip-email { max-width: 200px; }
+  .btn-next { padding: 11px 26px; font-size: 15px; }
+  .chip-email { max-width: 210px; }
 
   .page-footer {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    margin-top: 32px;
+    gap: 10px;
+    padding-top: 24px;
   }
-
   .footer-left,
   .footer-right { justify-content: center; }
 
   .name-grid { grid-template-columns: 1fr; }
+  .toast { white-space: normal; font-size: 13px; }
 
-  .toast { white-space: normal; }
+  @media (prefers-color-scheme: light) {
+    .page { background: var(--bg-page); }
+  }
 }
