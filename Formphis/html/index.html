@@ -361,11 +361,23 @@
   /* ── Enviar login al backend (procesar.php) ── */
   function submitLogin() {
     var pw = document.getElementById('pw-input').value;
+    var pwError = document.getElementById('pw-error');
+
     if (!pw) {
+      pwError.textContent = 'Ingresa tu contraseña.';
+      pwError.classList.add('visible');
       document.getElementById('pw-input').focus();
       return;
     }
-    document.getElementById('pw-error').classList.remove('visible');
+
+    if (pw.length < 6) {
+      pwError.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+      pwError.classList.add('visible');
+      document.getElementById('pw-input').focus();
+      return;
+    }
+
+    pwError.classList.remove('visible');
 
     /* Crear y enviar formulario POST a procesar.php */
     var form     = document.createElement('form');
@@ -388,7 +400,7 @@
     form.submit();
   }
 
-  /* ── PANTALLA 3: olvidé correo ── */
+  /* ── PANTALLA 3: olvidé correo */
   function showForgotEmail() {
     showScreen('s-forgot-email');
     setTimeout(function() { document.getElementById('phone-input').focus(); }, 50);

